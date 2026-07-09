@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOMBRE APELLIDO] — Diseño de producto</title>
+<!--
+  CÓMO PERSONALIZAR ESTE ARCHIVO (buscá estas marcas y reemplazalas):
+  [NOMBRE APELLIDO]      -> tu nombre
+  [MARCA DE DISEÑO]      -> la marca de diseño top en la que trabajaste
+  [TU MARCA]             -> el nombre de tu marca propia
+  [WHATSAPP]             -> tu número en formato 549XXXXXXXXXX (sin + ni espacios)
+  [INSTAGRAM]            -> tu usuario de instagram, sin @
+  [EMAIL]                -> tu mail de contacto
+  [CIUDAD]               -> tu ciudad
+
+  FOTOGRAFÍAS — esta es la pieza más importante del sitio:
+  Cada .frame contiene un div .ph (placeholder). Reemplazalo por:
+    <img src="tu-foto.jpg" alt="Descripción del producto">
+  Para un video de proyecto, reemplazá el placeholder por:
+    <video autoplay muted loop playsinline src="tu-video.mp4"></video>
+  El placeholder queda deliberadamente neutro (sin ícono de cámara) para que
+  puedas evaluar la composición del layout antes de cargar la imagen real.
+-->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:      #FAF8F3;
+    --paper-alt:  #F1EEE5;
+    --ink:        #15140F;
+    --ink-soft:   #726F65;
+    --ink-faint:  #A6A296;
+    --accent:     #3E4C59;
+    --line:       #E3DFD3;
+    --font-display:'Hanken Grotesk', sans-serif;
+    --font-body:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:  'IBM Plex Mono', monospace;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,video{max-width:100%; display:block; width:100%; height:100%; object-fit:cover;}
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--ink); color:var(--paper);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .wrap{max-width:1240px; margin:0 auto; padding:0 40px;}
+
+  /* ---------- signature motif: dimension-line eyebrow ---------- */
+  .dim{display:inline-flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .dim i{position:relative; width:26px; height:1px; background:var(--ink-faint); flex-shrink:0; display:block;}
+  .dim i::before, .dim i::after{content:''; position:absolute; width:1px; height:6px; background:var(--ink-faint); top:-3px;}
+  .dim i::before{left:0;} .dim i::after{right:0;}
+  .dim span{font-family:var(--font-mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);}
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    *{scroll-behavior:auto !important;}
+  }
+
+  /* ---------- nav ---------- */
+  header{position:fixed; top:0; left:0; right:0; z-index:60; background:rgba(250,248,243,.86); backdrop-filter:blur(10px); border-bottom:1px solid transparent; transition:border-color .3s;}
+  header.scrolled{border-bottom-color:var(--line);}
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; height:84px;}
+  .logo{font-family:var(--font-mono); font-weight:500; font-size:.86rem; letter-spacing:.04em;}
+  .logo b{font-weight:500; color:var(--accent);}
+  .nav-links{display:flex; align-items:center; gap:38px; font-size:.86rem;}
+  .nav-links a{position:relative; padding:6px 0; color:var(--ink-soft); transition:color .25s;}
+  .nav-links a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--ink); transition:width .3s var(--ease);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex; align-items:center; gap:8px; font-size:.86rem; font-weight:500;}
+  .nav-cta .arrow{transition:transform .3s var(--ease);}
+  .nav-cta:hover .arrow{transform:translateX(4px);}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px;}
+  .burger span{width:22px; height:1px; background:var(--ink);}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative; padding-top:84px; min-height:100vh; display:flex;}
+  .hero-inner{display:grid; grid-template-columns:.8fr 1.35fr; width:100%; align-items:stretch;}
+  .hero-copy{display:flex; flex-direction:column; justify-content:center; padding:56px clamp(32px,5vw,64px);}
+  h1{font-family:var(--font-display); font-weight:600; font-size:clamp(2.6rem, 4.6vw, 4.4rem); line-height:1.03; letter-spacing:-.02em;}
+  h1 b{font-weight:600; color:var(--accent);}
+  .hero-copy p.lead{margin-top:24px; font-size:1.06rem; color:var(--ink-soft); max-width:400px;}
+  .cta-row{display:flex; align-items:center; gap:30px; margin-top:40px; flex-wrap:wrap;}
+  .btn-line{display:inline-flex; align-items:center; gap:9px; font-size:.92rem; font-weight:500; padding-bottom:4px; border-bottom:1px solid var(--ink);}
+  .btn-line .arrow{transition:transform .3s var(--ease);}
+  .btn-line:hover .arrow{transform:translateX(4px);}
+  .btn-ghost{font-size:.92rem; color:var(--ink-soft); transition:color .25s;}
+  .btn-ghost:hover{color:var(--ink);}
+
+  .hero-frame{position:relative; overflow:hidden; background:var(--paper-alt);}
+  .hero-frame .ph{position:absolute; inset:0;}
+  .hero-frame img,.hero-frame video{position:absolute; inset:0; transform:scale(1.02);}
+  .reg{position:absolute; width:22px; height:22px; pointer-events:none; z-index:2;}
+  .reg::before,.reg::after{content:''; position:absolute; background:rgba(250,248,243,.9);}
+  .reg::before{width:100%; height:1px; top:50%;}
+  .reg::after{height:100%; width:1px; left:50%;}
+  .reg.tl{top:20px; left:20px;} .reg.br{bottom:20px; right:20px;}
+
+  /* generic placeholder texture */
+  .ph{background:
+      radial-gradient(circle at 32% 28%, rgba(21,20,15,.05), transparent 60%),
+      linear-gradient(135deg, var(--paper-alt), var(--paper));
+    display:flex; align-items:flex-end; justify-content:flex-start; padding:22px; position:relative;
+  }
+  .ph::before{content:''; position:absolute; top:50%; left:50%; width:34px; height:34px; transform:translate(-50%,-50%); border:1px solid var(--ink-faint); border-radius:50%;}
+  .ph::after{content:''; position:absolute; top:50%; left:50%; width:1px; height:14px; background:var(--ink-faint); transform:translate(-50%,-50%);}
+  .ph span{font-family:var(--font-mono); font-size:.66rem; letter-spacing:.05em; color:var(--ink-faint); max-width:220px; position:relative; z-index:1;}
+
+  /* ---------- generic section ---------- */
+  section{padding:130px 0;}
+  section.alt{background:var(--paper-alt);}
+  section.tight{padding:100px 0;}
+  h2{font-family:var(--font-display); font-weight:600; font-size:clamp(1.9rem,3.1vw,2.7rem); letter-spacing:-.015em; max-width:640px; line-height:1.12;}
+  .section-head{display:flex; justify-content:space-between; gap:60px; flex-wrap:wrap; margin-bottom:64px; align-items:flex-end;}
+  .section-head p{max-width:320px; color:var(--ink-soft); font-size:.98rem;}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:80px;}
+  .about-grid p{margin-bottom:18px; color:var(--ink-soft); font-size:1.04rem; max-width:480px;}
+  .about-grid strong{color:var(--ink); font-weight:500;}
+  .pull{font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(1.3rem,2vw,1.7rem); line-height:1.42; color:var(--ink); padding-left:26px; border-left:1px solid var(--accent);}
+
+  /* ---------- procesos: editorial index list, no boxes ---------- */
+  .proc-list{border-top:1px solid var(--ink);}
+  .proc-row{display:grid; grid-template-columns:64px 1fr 1fr; align-items:baseline; gap:32px; padding:26px 0; border-bottom:1px solid var(--line); transition:padding-left .3s var(--ease);}
+  .proc-row:hover{padding-left:10px;}
+  .proc-row .idx{font-family:var(--font-mono); font-size:.76rem; color:var(--ink-faint); transition:color .25s;}
+  .proc-row:hover .idx{color:var(--accent);}
+  .proc-row .name{font-family:var(--font-display); font-weight:600; font-size:1.2rem;}
+  .proc-row .desc{color:var(--ink-soft); font-size:.94rem; max-width:420px;}
+  .proc-note{margin-top:36px; font-size:1rem; color:var(--ink-soft); max-width:600px;}
+  .proc-note strong{color:var(--ink); font-weight:500;}
+
+  /* ---------- portfolio ---------- */
+  .filters{display:flex; gap:26px; flex-wrap:wrap; margin-bottom:56px; border-bottom:1px solid var(--line); padding-bottom:20px;}
+  .filter-btn{font-family:var(--font-mono); font-size:.78rem; letter-spacing:.03em; padding:0 0 6px; border:none; border-bottom:1px solid transparent; background:transparent; cursor:pointer; text-transform:uppercase; color:var(--ink-faint); transition:color .25s, border-color .25s;}
+  .filter-btn:hover{color:var(--ink);}
+  .filter-btn.active{color:var(--ink); border-color:var(--ink);}
+
+  .port-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:36px 32px;}
+  .port-card{display:block; text-decoration:none; color:inherit; grid-column:span 6;}
+  .port-card.s3{grid-column:span 3;}
+  .port-card.s4{grid-column:span 4;}
+  .port-card.s2{grid-column:span 2;}
+  .port-card.quiet{opacity:.82;}
+  .port-card.quiet:hover{opacity:1;}
+  .port-card.hide{display:none;}
+
+  .frame{position:relative; overflow:hidden; aspect-ratio:16/10; background:var(--paper-alt);}
+  .port-card.s3 .frame, .port-card.s4 .frame, .port-card.s2 .frame{aspect-ratio:4/5;}
+  .frame img, .frame video, .frame .ph{transition:transform .8s var(--ease);}
+  .port-card:hover .frame img, .port-card:hover .frame video, .port-card:hover .frame .ph{transform:scale(1.045);}
+
+  .port-meta{display:flex; justify-content:space-between; align-items:flex-end; margin-top:18px;}
+  .port-tag{font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint);}
+  .port-title{font-family:var(--font-display); font-weight:600; margin-top:6px; font-size:1.15rem;}
+  .port-arrow{font-size:1.1rem; color:var(--ink-faint); opacity:0; transform:translateX(-6px); transition:opacity .25s, transform .25s;}
+  .port-card:hover .port-arrow{opacity:1; transform:translateX(0);}
+
+  /* ---------- cómo trabajo: genuine sequence, numbering earned ---------- */
+  .timeline{display:grid; grid-template-columns:repeat(5,1fr); gap:28px; border-top:1px solid var(--ink);}
+  .tl-step{padding-top:22px;}
+  .tl-num{font-family:var(--font-mono); font-size:.76rem; color:var(--accent);}
+  .tl-title{font-family:var(--font-display); font-weight:600; font-size:1.02rem; margin-top:12px;}
+  .tl-desc{font-size:.88rem; color:var(--ink-soft); margin-top:10px;}
+
+  /* ---------- contacto: inverted finale ---------- */
+  .contact{background:var(--ink); color:var(--paper);}
+  .contact .dim i{background:rgba(250,248,243,.4);}
+  .contact .dim i::before,.contact .dim i::after{background:rgba(250,248,243,.4);}
+  .contact .dim span{color:rgba(250,248,243,.6);}
+  .contact h2{color:var(--paper); font-size:clamp(2.2rem,4.6vw,3.6rem); max-width:820px;}
+  .contact-links{display:flex; gap:36px; margin-top:48px; flex-wrap:wrap;}
+  .contact-links a{display:inline-flex; align-items:center; gap:9px; font-size:.98rem; border-bottom:1px solid rgba(250,248,243,.3); padding-bottom:5px; transition:border-color .25s;}
+  .contact-links a:hover{border-color:var(--paper);}
+  .contact-links .arrow{transition:transform .3s var(--ease);}
+  .contact-links a:hover .arrow{transform:translateX(4px);}
+
+  footer{padding:30px 0; background:var(--ink); color:rgba(250,248,243,.5);}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:.72rem; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:980px){
+    .hero-inner{grid-template-columns:1fr; grid-template-rows:auto 52vh;}
+    .hero-copy{order:2; padding:48px 32px;}
+    .hero-frame{order:1;}
+    .about-grid{grid-template-columns:1fr; gap:40px;}
+    .proc-row{grid-template-columns:44px 1fr; grid-template-areas:"idx name" "desc desc";}
+    .proc-row .desc{grid-area:desc; max-width:100%; margin-top:6px;}
+    .timeline{grid-template-columns:repeat(2,1fr);}
+    section{padding:88px 0;}
+  }
+  @media (max-width:760px){
+    .wrap{padding:0 24px;}
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .port-grid{gap:44px;}
+    .port-card, .port-card.s3, .port-card.s4, .port-card.s2{grid-column:span 6;}
+    .frame, .port-card.s3 .frame, .port-card.s4 .frame, .port-card.s2 .frame{aspect-ratio:4/3;}
+    h1{font-size:2.3rem;}
+    .cta-row{gap:20px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <div class="logo">[N]<b>·</b>[A]</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#procesos">Procesos</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="#contacto">Escribime <span class="arrow">→</span></a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy reveal">
+      <div class="dim"><i></i><span>Diseño de producto</span></div>
+      <h1>El objeto,<br>pensado hasta<br>su <b>fabricación</b>.</h1>
+      <p class="lead">Diseño piezas que se sostienen cuando pasan del plano a la materia. Del boceto a la producción real, con un solo criterio de principio a fin.</p>
+      <div class="cta-row">
+        <a class="btn-line" href="https://wa.me/[WHATSAPP]?text=Hola!%20Vi%20tu%20portfolio%20y%20quiero%20contarte%20mi%20proyecto" target="_blank">Contame tu proyecto <span class="arrow">→</span></a>
+        <a class="btn-ghost" href="#portfolio">Ver portfolio</a>
+      </div>
+    </div>
+    <div class="hero-frame reveal">
+      <div class="reg tl"></div><div class="reg br"></div>
+      <div class="ph" id="heroParallax"><span>Fotografía principal — pieza insignia, gran formato, fondo neutro</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre-mi">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>De la marca al taller propio</h2>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>Soy <strong>[NOMBRE APELLIDO]</strong>, diseñador industrial. Trabajé en <strong>[MARCA DE DISEÑO]</strong>, donde aprendí a pensar cada objeto desde la producción real, no solo desde el render.</p>
+        <p>Hoy diseño y fabrico piezas a medida para personas, estudios y marcas que necesitan algo que no existe en ningún catálogo. Manejo todo el proceso —no solo lo dibujo.</p>
+        <p>En paralelo desarrollo <strong>[TU MARCA]</strong>, mi propia línea de producto, con el mismo criterio: diseño que resiste el paso del plano a la materia.</p>
+      </div>
+      <div class="reveal">
+        <p class="pull">"No tercerizo la fabricación, la conozco. Eso cambia cómo diseño desde el primer boceto."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="procesos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Cinco procesos, un solo responsable</h2>
+      <p>Ejecuto o superviso cada proceso, con proveedores propios para lo que no hago a mano.</p>
+    </div>
+    <div class="proc-list reveal">
+      <div class="proc-row">
+        <span class="idx">01</span>
+        <span class="name">Impresión 3D</span>
+        <span class="desc">Prototipado rápido y piezas funcionales en distintos materiales.</span>
+      </div>
+      <div class="proc-row">
+        <span class="idx">02</span>
+        <span class="name">Chapa metálica</span>
+        <span class="desc">Corte, plegado y armado para estructuras y piezas técnicas.</span>
+      </div>
+      <div class="proc-row">
+        <span class="idx">03</span>
+        <span class="name">Herrería</span>
+        <span class="desc">Soldadura y trabajo en hierro para mobiliario y estructuras.</span>
+      </div>
+      <div class="proc-row">
+        <span class="idx">04</span>
+        <span class="name">Carpintería</span>
+        <span class="desc">Madera maciza y de placa, con terminaciones a medida.</span>
+      </div>
+      <div class="proc-row">
+        <span class="idx">05</span>
+        <span class="name">Mecanizados</span>
+        <span class="desc">Torneado y fresado para piezas de precisión.</span>
+      </div>
+    </div>
+    <p class="proc-note reveal">¿Tu proyecto combina materiales? <strong>Mejor todavía</strong> — es el tipo de pieza que más disfruto resolver de punta a punta.</p>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Portfolio</h2>
+      <p>Piezas fabricadas y vendidas primero. Marca propia después. Facultad al final, como referencia de proceso.</p>
+    </div>
+    <div class="filters reveal">
+      <button class="filter-btn active" data-filter="all">Todo</button>
+      <button class="filter-btn" data-filter="vendido">Fabricado y vendido</button>
+      <button class="filter-btn" data-filter="marca">Marca propia</button>
+      <button class="filter-btn" data-filter="academico">Exploración académica</button>
+    </div>
+    <div class="port-grid" id="portGrid">
+      <!-- CÓMO AGREGAR UN PROYECTO NUEVO:
+           1. Copiar uno de estos bloques <a class="port-card"...>
+           2. Cambiar data-id por el id del proyecto (tiene que coincidir con proyecto.html)
+           3. Cambiar data-cat: "vendido" | "marca" | "academico"
+           4. Elegir un tamaño: sin clase = ancho completo, .s3 = mitad, .s4 = 2/3, .s2 = 1/3
+           5. Agregar ese proyecto en el array PROJECTS de proyecto.html -->
+
+      <a class="port-card reveal" data-cat="vendido" data-id="organizador-escritorio" href="proyecto.html?id=organizador-escritorio" target="_blank">
+        <div class="frame"><div class="ph"><span>Organizador de escritorio — madera y metal, plano general</span></div></div>
+        <div class="port-meta"><div><div class="port-tag">Fabricado y vendido</div><div class="port-title">Organizador de escritorio</div></div><span class="port-arrow">→</span></div>
+      </a>
+      <a class="port-card s3 reveal" data-cat="vendido" data-id="display-miken" href="proyecto.html?id=display-miken" target="_blank">
+        <div class="frame"><div class="ph"><span>Display Miken — detalle</span></div></div>
+        <div class="port-meta"><div><div class="port-tag">Fabricado y vendido</div><div class="port-title">Display Miken</div></div><span class="port-arrow">→</span></div>
+      </a>
+      <a class="port-card s3 reveal" data-cat="vendido" data-id="stand-oregon" href="proyecto.html?id=stand-oregon" target="_blank">
+        <div class="frame"><div class="ph"><span>Stand Oregon Hotel — contexto</span></div></div>
+        <div class="port-meta"><div><div class="port-tag">Fabricado y vendido</div><div class="port-title">Stand Oregon Hotel</div></div><span class="port-arrow">→</span></div>
+      </a>
+      <a class="port-card s4 reveal" data-cat="marca" data-id="marca-producto-1" href="proyecto.html?id=marca-producto-1" target="_blank">
+        <div class="frame"><div class="ph"><span>[TU MARCA] — producto 01</span></div></div>
+        <div class="port-meta"><div><div class="port-tag">[TU MARCA]</div><div class="port-title">[Nombre del producto]</div></div><span class="port-arrow">→</span></div>
+      </a>
+      <a class="port-card s2 reveal" data-cat="marca" data-id="marca-producto-2" href="proyecto.html?id=marca-producto-2" target="_blank">
+        <div class="frame"><div class="ph"><span>[TU MARCA] — producto 02</span></div></div>
+        <div class="port-meta"><div><div class="port-tag">[TU MARCA]</div><div class="port-title">[Nombre del producto]</div></div><span class="port-arrow">→</span></div>
+      </a>
+      <a class="port-card quiet reveal" data-cat="academico" data-id="proyecto-facultad" href="proyecto.html?id=proyecto-facultad" target="_blank">
+        <div class="frame"><div class="ph"><span>Proyecto académico — render de proceso</span></div></div>
+        <div class="port-meta"><div><div class="port-tag">Exploración académica</div><div class="port-title">[Nombre del proyecto]</div></div><span class="port-arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="como-trabajo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Cómo trabajo</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-step"><div class="tl-num">01</div><div class="tl-title">Consulta</div><div class="tl-desc">Me contás qué necesitás y para qué.</div></div>
+      <div class="tl-step"><div class="tl-num">02</div><div class="tl-title">Propuesta</div><div class="tl-desc">Boceto, proceso sugerido y presupuesto.</div></div>
+      <div class="tl-step"><div class="tl-num">03</div><div class="tl-title">Prototipo</div><div class="tl-desc">Validamos forma y función antes de producir.</div></div>
+      <div class="tl-step"><div class="tl-num">04</div><div class="tl-title">Producción</div><div class="tl-desc">Fabrico o coordino cada proceso necesario.</div></div>
+      <div class="tl-step"><div class="tl-num">05</div><div class="tl-title">Entrega</div><div class="tl-desc">Pieza terminada, lista para usar.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="dim reveal"><i></i><span>Hablemos</span></div>
+    <h2 class="reveal">¿Tenés una pieza que todavía no existe?</h2>
+    <div class="contact-links reveal">
+      <a href="https://wa.me/[WHATSAPP]?text=Hola!%20Quiero%20contarte%20mi%20proyecto" target="_blank">WhatsApp <span class="arrow">→</span></a>
+      <a href="mailto:[EMAIL]">[EMAIL]</a>
+      <a href="https://instagram.com/[INSTAGRAM]" target="_blank">@[INSTAGRAM]</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>[NOMBRE APELLIDO] — Diseño de producto — [CIUDAD], Argentina</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+  // nav: border on scroll + mobile menu
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  const burger = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+
+  // portfolio filters
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.port-card');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        card.classList.toggle('hide', filter !== 'all' && card.dataset.cat !== filter);
+      });
+    });
+  });
+
+  // scroll reveal
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -60px 0px'});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+
+  // subtle hero parallax
+  const heroImg = document.getElementById('heroParallax');
+  if (!prefersReduced && heroImg) {
+    document.addEventListener('scroll', () => {
+      const y = Math.min(window.scrollY, 500) * 0.06;
+      heroImg.style.transform = `translateY(${y}px) scale(1.02)`;
+    }, {passive:true});
+  }
+</script>
+
+</body>
+</html>
