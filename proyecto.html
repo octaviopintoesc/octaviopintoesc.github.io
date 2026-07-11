@@ -117,6 +117,7 @@
 
   /* ancho completo: cada foto ocupa todo el ancho de la pantalla, sin las tarjetas ni los márgenes del sitio */
   .gal-item.wide{column-span:all;}
+  .gal-item.centered{column-span:all; max-width:640px; margin-left:auto; margin-right:auto;}
 
   .gal-grid.gal-full{max-width:none; padding:0; column-count:1; display:flex; flex-direction:column; gap:10px;}
   .gal-full .gal-item{margin-bottom:0; border-radius:0; border:none; box-shadow:none; break-inside:auto;}
@@ -275,10 +276,20 @@
     "miken": {
       title: "Miken",
       tag: "Exhibidor de faros para maquinaria",
-      desc: "Exhibidor a medida para faros de maquinaria, diseñado para mostrar el producto con foco en el detalle.",
+      desc: "Plataforma metálica exhibidora de faros de maquinaria agrícola. Se buscó una estética sólida asociable a la maquinaria, varias posiciones para distintos faros, asistir a la organización de cables y una buena exhibición de la marca.",
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/Miken-general.jpg",
+      specs: {
+        year: "2025",
+        tools: "Solidworks, Autocad, Conformado de chapa",
+        client: "Miken",
+        role: "Diseño, fabricación"
+      },
       gallery: [
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/Miken-general.jpg"
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/miken-1.jpg", wide:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/miken-2.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/miken-3.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/miken-4.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/miken-5.jpg"
       ]
     },
     "oregon-hotel": {
@@ -302,10 +313,17 @@
     "orbital": {
       title: "Orbital",
       tag: "Máquina de entrenamiento inercial",
-      desc: "Máquina de entrenamiento inercial: ingeniería aplicada al deporte, de la idea al producto funcional.",
+      desc: "Un sistema de entrenamiento que usa la inercia de un volante en lugar de peso muerto. Diseño con el objetivo de hacer un sistema compacto y sofisticado que permita un entrenamiento de alto nivel en un entorno doméstico.",
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/orbital-general.jpg",
+      specs: {
+        year: "2024",
+        tools: "Solidworks, Autocad, Keyshot, Conformado de chapa, Herrería, Ruter CNC",
+        client: "Marca personal",
+        role: "Diseño, fabricación"
+      },
       gallery: [
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/orbital-general.jpg"
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/orbital-1.jpg", wide:true },
+        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/orbital-video.webm", centered:true }
       ]
     },
     "lampara-larga": {
@@ -363,7 +381,6 @@
       tag: "Estaciones públicas de entrenamiento",
       desc: "Estaciones de entrenamiento para espacio público, resueltas para uso intensivo a la intemperie.",
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-general.jpg",
-      layout: "full",
       specs: {
         year: "2021",
         tools: "Solidworks, Keyshot, Twinmotion, Adobe Premiere",
@@ -371,16 +388,16 @@
         role: "Concept"
       },
       gallery: [
-        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-video.mp4" },
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-1.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-2.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-3.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-4.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-5.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-61.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-62.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-7.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-8.jpg"
+        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-video.mp4", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-1.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-2.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-3.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-4.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-5.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-61.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-62.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-7.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-8.jpg", wide:true }
       ]
     },
     "tablero-migia": {
@@ -449,17 +466,20 @@
 
     galleryItems.forEach(item => {
       // cada item puede ser: un string (imagen normal), o un objeto:
-      //   { src:"..." }                      -> imagen normal
-      //   { src:"...", wide:true }            -> imagen "de lado a lado" (ocupa las dos columnas, respeta los márgenes de la página)
-      //   { type:"video", src:"..." }         -> video normal
-      //   { type:"video", src:"...", wide:true } -> video "de lado a lado"
+      //   { src:"..." }                          -> imagen normal
+      //   { src:"...", wide:true }                -> imagen "de lado a lado" (ocupa las dos columnas, respeta los márgenes de la página)
+      //   { src:"...", centered:true }            -> imagen chica centrada, sola en su fila
+      //   { type:"video", src:"..." }              -> video normal
+      //   { type:"video", src:"...", wide:true }   -> video "de lado a lado"
+      //   { type:"video", src:"...", centered:true } -> video chico centrado, solo en su fila
       const isObj = typeof item === 'object';
       const isVideo = isObj && item.type === 'video';
       const isWide = isObj && item.wide === true;
+      const isCentered = isObj && item.centered === true;
       const src = isObj ? item.src : item;
 
       const fig = document.createElement(isVideo ? 'div' : 'a');
-      fig.className = 'gal-item reveal' + (isVideo ? ' gal-video-wrap' : '') + (isWide ? ' wide' : '');
+      fig.className = 'gal-item reveal' + (isVideo ? ' gal-video-wrap' : '') + (isWide ? ' wide' : '') + (isCentered ? ' centered' : '');
       if (!isVideo) { fig.href = src; fig.target = '_blank'; }
 
       const media = document.createElement(isVideo ? 'video' : 'img');
