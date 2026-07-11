@@ -5,14 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Octavio Pinto — Diseño de producto</title>
 <!--
-  CÓMO PERSONALIZAR ESTE ARCHIVO (buscá estas marcas y reemplazalas):
-  [NOMBRE APELLIDO]      -> tu nombre
-  [MARCA DE DISEÑO]      -> la marca de diseño top en la que trabajaste
-  [TU MARCA]             -> el nombre de tu marca propia
-  [WHATSAPP]             -> tu número en formato 549XXXXXXXXXX (sin + ni espacios)
-  [INSTAGRAM]            -> tu usuario de instagram, sin @
-  [EMAIL]                -> tu mail de contacto
-  [CIUDAD]               -> tu ciudad
+  Datos de contacto ya cargados: WhatsApp, email, Instagram, LinkedIn y ciudad.
+  Para cambiarlos más adelante, buscá "wa.me", "mailto:", "instagram.com" y
+  "linkedin.com" en este archivo.
 
   FOTOGRAFÍAS — esta es la pieza más importante del sitio:
   Cada .frame contiene un div .ph (placeholder). Reemplazalo por:
@@ -131,12 +126,12 @@
   .section-head p{max-width:320px; color:var(--ink-soft); font-size:.98rem;}
 
   /* ---------- about ---------- */
-  .about-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:80px;}
+  .about-grid{display:grid; grid-template-columns:1.5fr .6fr; gap:60px; align-items:start;}
   .about-grid p{margin-bottom:18px; color:var(--ink-soft); font-size:1.04rem; max-width:480px;}
   .about-grid strong{color:var(--ink); font-weight:500;}
   .pull{font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(1.3rem,2vw,1.7rem); line-height:1.42; color:var(--ink); padding-left:26px; border-left:1px solid var(--accent);}
   .frame{position:relative; overflow:hidden; background:var(--paper-alt); border-radius:var(--radius); border:1px solid rgba(21,20,15,.07); box-shadow:0 1px 2px rgba(21,20,15,.04);}
-  .about-photo{aspect-ratio:4/5;}
+  .about-photo{aspect-ratio:4/5; max-width:280px; margin-left:auto;}
 
   /* ---------- procesos: editorial index list, no boxes ---------- */
   .proc-slider-wrap{position:relative;}
@@ -150,10 +145,17 @@
   .proc-item:hover .idx{color:var(--accent);}
   .proc-item .name{display:block; font-family:var(--font-display); font-weight:600; font-size:1.03rem; line-height:1.28;}
   .proc-hint{margin-top:16px; font-family:var(--font-mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); display:flex; align-items:center; gap:8px;}
-  .proc-note{margin-top:36px; font-size:1rem; color:var(--ink-soft); max-width:600px;}
-  .proc-note strong{color:var(--ink); font-weight:500;}
 
   /* ---------- portfolio: filas flex de alto compartido, imagen siempre visible, gaps ajustados ---------- */
+  .port-filters{display:flex; gap:10px; overflow-x:auto; padding-bottom:14px; margin-bottom:34px; border-bottom:1px solid var(--line); scrollbar-width:thin; scrollbar-color:var(--ink-faint) transparent;}
+  .port-filters::-webkit-scrollbar{height:3px;}
+  .port-filters::-webkit-scrollbar-thumb{background:var(--line);}
+  .filter-chip{flex:0 0 auto; font-family:var(--font-mono); font-size:.74rem; letter-spacing:.03em; padding:8px 16px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--ink-soft); cursor:pointer; white-space:nowrap; transition:background .25s, color .25s, border-color .25s;}
+  .filter-chip:hover{border-color:var(--ink-faint); color:var(--ink);}
+  .filter-chip.active{background:var(--ink); border-color:var(--ink); color:var(--paper);}
+  .port-card.filtered-out{display:none;}
+  .port-row-group.filtered-out{display:none;}
+
   .port-rows{display:flex; flex-direction:column; gap:14px;}
   .port-row-group{display:flex; gap:14px;}
 
@@ -208,6 +210,7 @@
     .hero-copy{order:2; padding:48px 32px;}
     .hero-frame{order:1;}
     .about-grid{grid-template-columns:1fr; gap:40px;}
+    .about-photo{margin:0 auto;}
     .proc-item{width:170px; padding:24px 18px 20px;}
     .timeline{grid-template-columns:repeat(2,1fr);}
     section{padding:88px 0;}
@@ -224,11 +227,11 @@
   }
 </style>
 </head>
-<body>
+<body id="top">
 
 <header id="siteHeader">
   <nav class="wrap">
-    <div class="logo">O<b>·</b>P</div>
+    <a class="logo" href="#top">O<b>-</b>P<b>-</b>E</a>
     <div class="nav-links" id="navLinks">
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#procesos">Procesos</a>
@@ -249,7 +252,7 @@
       <h1>El objeto,<br>pensado hasta<br>su <b>fabricación</b>.</h1>
       <p class="lead">Diseño piezas que no están limitadas por los medios de fabricación, sino potenciadas. Encuentro la forma de hacerlo posible.</p>
       <div class="cta-row">
-        <a class="btn-line" href="https://wa.me/[WHATSAPP]?text=Hola!%20Vi%20tu%20portfolio%20y%20quiero%20contarte%20mi%20proyecto" target="_blank">Contame tu proyecto <span class="arrow">→</span></a>
+        <a class="btn-line" href="https://wa.me/5491166236789?text=Hola!%20Vi%20tu%20portfolio%20y%20quiero%20contarte%20mi%20proyecto" target="_blank">Contame tu proyecto <span class="arrow">→</span></a>
         <a class="btn-ghost" href="#portfolio">Ver portfolio</a>
       </div>
     </div>
@@ -304,7 +307,6 @@
       </div>
       <div class="proc-hint">Deslizá para ver los 15 procesos <span class="arrow">→</span></div>
     </div>
-    <p class="proc-note reveal">¿Tu proyecto combina materiales? <strong>Mejor todavía</strong> — es el tipo de pieza que más disfruto resolver de punta a punta.</p>
   </div>
 </section>
 
@@ -312,8 +314,8 @@
   <div class="wrap">
     <div class="section-head reveal">
       <h2>Portfolio</h2>
-      <p>Once proyectos, en orden cronológico.</p>
     </div>
+    <div class="port-filters reveal" id="portFilters"><!-- se completa por JS a partir de data-tools de cada proyecto --></div>
     <div class="port-rows" id="portGrid">
       <!-- CÓMO AGREGAR UN PROYECTO NUEVO:
            1. Copiar uno de estos bloques <a class="port-card"...> dentro de un .port-row-group
@@ -325,69 +327,69 @@
 
       <!-- G — Lumens & Brawn — fila propia, imagen dominante -->
       <div class="port-row-group rh-hero">
-        <a class="port-card reveal" data-id="lumens-brawn" href="proyecto.html?id=lumens-brawn" target="_blank">
+        <a class="port-card reveal" data-id="lumens-brawn" data-tools="" href="proyecto.html?id=lumens-brawn" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/Lumensandbrawn-general.png" alt="Lumens & Brawn — sistema de orden" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Lumens & Brawn </span><span class="cap-tag">| Sistemas de orden</span></div>
+          <div class="port-caption"><span class="cap-title">Lumens & Brawn</span><span class="cap-tag">Sistemas de orden</span></div>
         </a>
       </div>
 
       <!-- M — Dapquim + C — Atina Tools -->
       <div class="port-row-group rh-pair">
-        <a class="port-card fw-7 reveal" data-id="dapquim" href="proyecto.html?id=dapquim" target="_blank">
+        <a class="port-card fw-7 reveal" data-id="dapquim" data-tools="" href="proyecto.html?id=dapquim" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/dapquim-general-01.jpg" alt="Dapquim — equipo de fumigación" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Dapquim </span><span class="cap-tag">| Equipos de fumigación</span></div>
+          <div class="port-caption"><span class="cap-title">Dapquim</span><span class="cap-tag">Equipos de fumigación</span></div>
         </a>
-        <a class="port-card fw-5 reveal" data-id="atina-tools" href="proyecto.html?id=atina-tools" target="_blank">
+        <a class="port-card fw-5 reveal" data-id="atina-tools" data-tools="Solidworks|Impresión 3D|Conformado de chapa" href="proyecto.html?id=atina-tools" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mandril-general.JPG" alt="Atina Tools — mandril de joyería" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Atina Tools </span><span class="cap-tag">| Mandril de joyería</span></div>
+          <div class="port-caption"><span class="cap-title">Atina Tools</span><span class="cap-tag">Mandril de joyería</span></div>
         </a>
       </div>
 
       <!-- C — Miken + C — Oregon Hotel + C — Lámpara larga: tres tercios iguales -->
       <div class="port-row-group rh-triple">
-        <a class="port-card fw-1 reveal" data-id="miken" href="proyecto.html?id=miken" target="_blank">
+        <a class="port-card fw-1 reveal" data-id="miken" data-tools="Solidworks|Autocad|Conformado de chapa" href="proyecto.html?id=miken" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/Miken-general.jpg" alt="Miken — exhibidor de faros para maquinaria" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Miken </span><span class="cap-tag">| Faros para maquinaria</span></div>
+          <div class="port-caption"><span class="cap-title">Miken</span><span class="cap-tag">Faros para maquinaria</span></div>
         </a>
-        <a class="port-card fw-1 reveal" data-id="oregon-hotel" href="proyecto.html?id=oregon-hotel" target="_blank">
-          <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/oregonhotel-general.jpg" alt="Oregon Hotel — exhibidor de blanquería premium" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Oregon Hotel </span><span class="cap-tag">| Blanquería premium</span></div>
+        <a class="port-card fw-1 reveal" data-id="oregon-hotel" data-tools="Solidworks|Carpintería|Herrería|Proveedores de cartelería" href="proyecto.html?id=oregon-hotel" target="_blank">
+          <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/oregonhotel-general.png" alt="Oregon Hotel — exhibidor de blanquería premium" loading="lazy">
+          <div class="port-caption"><span class="cap-title">Oregon Hotel</span><span class="cap-tag">Blanquería premium</span></div>
         </a>
-        <a class="port-card fw-1 reveal" data-id="lampara-larga" href="proyecto.html?id=lampara-larga" target="_blank">
+        <a class="port-card fw-1 reveal" data-id="lampara-larga" data-tools="Solidworks|Vectric Aspire|Ruter CNC|Carpintería" href="proyecto.html?id=lampara-larga" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lamparaa-cercamiento-princiapal.jpg" alt="Lámpara larga — lámpara colgante" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Lámpara larga </span><span class="cap-tag">| Lámpara colgante</span></div>
+          <div class="port-caption"><span class="cap-title">Lámpara larga</span><span class="cap-tag">Lámpara colgante</span></div>
         </a>
       </div>
 
       <!-- M — Orbital — ahora en la fila larga, imagen panorámica de ancho completo -->
       <div class="port-row-group rh-long">
-        <a class="port-card reveal" data-id="orbital" href="proyecto.html?id=orbital" target="_blank">
+        <a class="port-card reveal" data-id="orbital" data-tools="Solidworks|Autocad|Keyshot|Conformado de chapa|Herrería|Ruter CNC" href="proyecto.html?id=orbital" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/orbital-general.jpg" alt="Orbital — máquina de entrenamiento inercial" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Orbital </span><span class="cap-tag">| Entrenamiento inercial</span></div>
+          <div class="port-caption"><span class="cap-title">Orbital</span><span class="cap-tag">Entrenamiento inercial</span></div>
         </a>
       </div>
 
       <!-- G — Fusión a medida — fila propia, imagen dominante -->
       <div class="port-row-group rh-hero">
-        <a class="port-card reveal" data-id="fusion-a-medida" href="proyecto.html?id=fusion-a-medida" target="_blank">
+        <a class="port-card reveal" data-id="fusion-a-medida" data-tools="Solidworks|Vectric Aspire|Ruter CNC|Carpintería|Iluminación|Herrería" href="proyecto.html?id=fusion-a-medida" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-general.jpg" alt="Fusión a medida — mobiliario premium de diseño" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Fusión a medida </span><span class="cap-tag">| Mobiliario premium de diseño</span></div>
+          <div class="port-caption"><span class="cap-title">Fusión a medida</span><span class="cap-tag">Mobiliario premium de diseño</span></div>
         </a>
       </div>
 
       <!-- C — Cajas Hoplita + M — Almacén deportivo + M — Tablero Migia -->
       <div class="port-row-group rh-triple">
-        <a class="port-card fw-3 reveal" data-id="cajas-hoplita" href="proyecto.html?id=cajas-hoplita" target="_blank">
+        <a class="port-card fw-3 reveal" data-id="cajas-hoplita" data-tools="Solidworks|Keyshot|Conformado de chapa|Corte y plegado de acrílico" href="proyecto.html?id=cajas-hoplita" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/Hoplita-general.jpg" alt="Cajas Hoplita — cajas para cartas coleccionables" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Cajas Hoplita </span><span class="cap-tag">| Cartas coleccionables</span></div>
+          <div class="port-caption"><span class="cap-title">Cajas Hoplita</span><span class="cap-tag">Cartas coleccionables</span></div>
         </a>
-        <a class="port-card fw-5 reveal" data-id="almacen-deportivo" href="proyecto.html?id=almacen-deportivo" target="_blank">
+        <a class="port-card fw-5 reveal" data-id="almacen-deportivo" data-tools="Solidworks|Keyshot|Twinmotion|Adobe Premiere" href="proyecto.html?id=almacen-deportivo" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-general.jpg" alt="Almacén deportivo — estaciones públicas de entrenamiento" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Almacén deportivo </span><span class="cap-tag">| Estaciones de entrenamiento</span></div>
+          <div class="port-caption"><span class="cap-title">Almacén deportivo</span><span class="cap-tag">Estaciones de entrenamiento</span></div>
         </a>
-        <a class="port-card fw-4 reveal" data-id="tablero-migia" href="proyecto.html?id=tablero-migia" target="_blank">
+        <a class="port-card fw-4 reveal" data-id="tablero-migia" data-tools="Adobe Illustrator|Adobe Photoshop|Adobe XD|Blender|UX/UI" href="proyecto.html?id=tablero-migia" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/tableromijia-general.png" alt="Migia — interfaz de lavarropas" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Tablero Mijia </span><span class="cap-tag">| Interfaz de lavarropas</span></div>
+          <div class="port-caption"><span class="cap-title">Tablero Migia</span><span class="cap-tag">Interfaz de lavarropas</span></div>
         </a>
       </div>
     </div>
@@ -415,16 +417,17 @@
     <div class="dim reveal"><i></i><span>Hablemos</span></div>
     <h2 class="reveal">¿Tenés una pieza que todavía no existe?</h2>
     <div class="contact-links reveal">
-      <a href="https://wa.me/[WHATSAPP]?text=Hola!%20Quiero%20contarte%20mi%20proyecto" target="_blank">WhatsApp <span class="arrow">→</span></a>
-      <a href="mailto:[EMAIL]">[EMAIL]</a>
-      <a href="https://instagram.com/[INSTAGRAM]" target="_blank">@[INSTAGRAM]</a>
+      <a href="https://wa.me/5491166236789?text=Hola!%20Quiero%20contarte%20mi%20proyecto" target="_blank">WhatsApp <span class="arrow">→</span></a>
+      <a href="mailto:octaviopinto@gmail.com">octaviopinto@gmail.com</a>
+      <a href="https://instagram.com/octaviopintoescalier" target="_blank">@octaviopintoescalier</a>
+      <a href="https://www.linkedin.com/in/octavio-pinto-escalier-864091177/" target="_blank">LinkedIn <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot-row">
-    <span>Octavio Pinto — Diseño de producto — [CIUDAD], Argentina</span>
+    <span>Octavio Pinto — Diseño de producto — Ciudad de Buenos Aires, Argentina</span>
     <span>© 2026</span>
   </div>
 </footer>
@@ -478,6 +481,45 @@
       if (!isDown) return;
       e.preventDefault();
       slider.scrollLeft = startScroll - (e.pageX - startX);
+    });
+  }
+
+  // portfolio: filtro por herramientas — se arma solo a partir de data-tools de cada tarjeta
+  const filtersEl = document.getElementById('portFilters');
+  const portCards = Array.from(document.querySelectorAll('#portGrid .port-card'));
+  const rowGroups = Array.from(document.querySelectorAll('#portGrid .port-row-group'));
+
+  const allTools = new Set();
+  portCards.forEach(card => {
+    (card.dataset.tools || '').split('|').map(t => t.trim()).filter(Boolean).forEach(t => allTools.add(t));
+  });
+
+  function applyFilter(tool) {
+    portCards.forEach(card => {
+      const tools = (card.dataset.tools || '').split('|').map(t => t.trim());
+      const matches = tool === 'all' || tools.includes(tool);
+      card.classList.toggle('filtered-out', !matches);
+    });
+    // si en una fila no queda ninguna tarjeta visible, se oculta la fila entera para no dejar un hueco
+    rowGroups.forEach(row => {
+      const visible = Array.from(row.querySelectorAll('.port-card')).some(c => !c.classList.contains('filtered-out'));
+      row.classList.toggle('filtered-out', !visible);
+    });
+  }
+
+  if (filtersEl && allTools.size) {
+    const sortedTools = Array.from(allTools).sort((a, b) => a.localeCompare(b, 'es'));
+    const chips = [{ label: 'Todos', value: 'all' }, ...sortedTools.map(t => ({ label: t, value: t }))];
+    filtersEl.innerHTML = chips.map((c, i) =>
+      `<button class="filter-chip${i === 0 ? ' active' : ''}" data-value="${c.value}">${c.label}</button>`
+    ).join('');
+
+    filtersEl.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        filtersEl.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        applyFilter(chip.dataset.value);
+      });
     });
   }
 </script>
