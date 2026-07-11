@@ -116,6 +116,8 @@
   .gal-item:hover img, .gal-item:hover video{transform:scale(1.03);}
 
   /* ancho completo: cada foto ocupa todo el ancho de la pantalla, sin las tarjetas ni los márgenes del sitio */
+  .gal-item.wide{column-span:all;}
+
   .gal-grid.gal-full{max-width:none; padding:0; column-count:1; display:flex; flex-direction:column; gap:10px;}
   .gal-full .gal-item{margin-bottom:0; border-radius:0; border:none; box-shadow:none; break-inside:auto;}
   .gal-full .gal-item:hover img, .gal-full .gal-item:hover video{transform:none;}
@@ -309,10 +311,19 @@
     "lampara-larga": {
       title: "Lámpara larga",
       tag: "Lámpara colgante",
-      desc: "Una lámpara colgante de líneas simples, diseñada para acompañar el espacio sin competir con él.",
+      desc: "Una lámpara larga colgante para comedor. Pensada para tener una estética moderna con estructura definida y curvas refinadas, volumétricas y naturales.",
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lamparaa-cercamiento-princiapal.jpg",
+      specs: {
+        year: "2025",
+        tools: "Solidworks, Vectric Aspire, Ruter CNC, carpintería",
+        client: "Particular",
+        role: "Diseño, fabricación"
+      },
       gallery: [
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lamparaa-cercamiento-princiapal.jpg"
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lampara%20vista%20general.png", wide:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lampara%20arriba.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lamparaa-cercamiento-princiapal.jpg",
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lampara-plano.jpg", wide:true }
       ]
     },
     "fusion-a-medida": {
@@ -327,10 +338,24 @@
     "cajas-hoplita": {
       title: "Cajas Hoplita",
       tag: "Cajas para cartas coleccionables",
-      desc: "Cajas de guarda y transporte para cartas coleccionables, pensadas para el uso frecuente.",
+      desc: "Cajas premium de acero y acrílico para cartas coleccionables. Acabados con pintura electrostática, bronceado y pavonado.",
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/Hoplita-general.jpg",
+      specs: {
+        year: "2025",
+        tools: "Solidworks, Keyshot, Conformado de chapa, Corte y plegado de acrílico",
+        client: "Cajas Hoplita, marca personal",
+        role: "Diseño, fabricación, venta"
+      },
       gallery: [
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/Hoplita-general.jpg"
+        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/hoplita-9.mp4" },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/hoplita-1.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/hoplita-2.jpg", wide:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/hoplita-3.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/hoplita-4.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/hoplita-5.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/hoplita-6.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/hoplita-7.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/hoplita-8.jpg"
       ]
     },
     "almacen-deportivo": {
@@ -343,7 +368,7 @@
         year: "2021",
         tools: "Solidworks, Keyshot, Twinmotion, Adobe Premiere",
         client: "Universidad de Buenos Aires",
-        status: "Concept"
+        role: "Concept"
       },
       gallery: [
         { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/almacendeportivo-video.mp4" },
@@ -361,10 +386,17 @@
     "tablero-migia": {
       title: "Tablero Migia",
       tag: "Interfaz de lavarropas",
-      desc: "Rediseño de la interfaz física de un lavarropas: cada botón y cada texto, pensado desde el uso diario.",
+      desc: "Trabajo UX/UI sobre el diseño del tablero de un lavarropas Migia, combinando la perilla analógica con un sistema digital.",
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/tableromijia-general.png",
+      specs: {
+        year: "2021",
+        tools: "Adobe Illustrator, Adobe Photoshop, Adobe XD, Blender, UX/UI",
+        client: "Universidad de Buenos Aires",
+        role: "Concept"
+      },
       gallery: [
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/tableromijia-general.png"
+        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/tableromijia-video.mp4", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/tablerimijia-1.jpg", wide:true }
       ]
     }
   };
@@ -383,7 +415,7 @@
   function renderSpecs(specs) {
     const el = document.getElementById('projSpecs');
     if (!specs) { el.classList.add('hidden'); el.innerHTML = ''; return; }
-    const order = [['year','Año'], ['tools','Herramientas'], ['client','Cliente'], ['role','Trabajo'], ['status','Estado']];
+    const order = [['year','Año'], ['tools','Herramientas'], ['client','Cliente'], ['role','Trabajo']];
     const rows = order.filter(([k]) => specs[k]);
     if (!rows.length) { el.classList.add('hidden'); el.innerHTML = ''; return; }
     el.classList.remove('hidden');
@@ -416,12 +448,18 @@
     }
 
     galleryItems.forEach(item => {
-      // cada item puede ser un string (imagen) o un objeto {type:'video', src:'...'} (video)
-      const isVideo = typeof item === 'object' && item.type === 'video';
-      const src = isVideo ? item.src : item;
+      // cada item puede ser: un string (imagen normal), o un objeto:
+      //   { src:"..." }                      -> imagen normal
+      //   { src:"...", wide:true }            -> imagen "de lado a lado" (ocupa las dos columnas, respeta los márgenes de la página)
+      //   { type:"video", src:"..." }         -> video normal
+      //   { type:"video", src:"...", wide:true } -> video "de lado a lado"
+      const isObj = typeof item === 'object';
+      const isVideo = isObj && item.type === 'video';
+      const isWide = isObj && item.wide === true;
+      const src = isObj ? item.src : item;
 
       const fig = document.createElement(isVideo ? 'div' : 'a');
-      fig.className = 'gal-item reveal' + (isVideo ? ' gal-video-wrap' : '');
+      fig.className = 'gal-item reveal' + (isVideo ? ' gal-video-wrap' : '') + (isWide ? ' wide' : '');
       if (!isVideo) { fig.href = src; fig.target = '_blank'; }
 
       const media = document.createElement(isVideo ? 'video' : 'img');
