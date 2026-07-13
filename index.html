@@ -87,7 +87,7 @@
   .burger span{width:22px; height:1px; background:var(--ink);}
 
   /* ---------- botón flotante de WhatsApp ---------- */
-  .wa-float{position:fixed; right:24px; bottom:24px; z-index:65; width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--paper); box-shadow:0 8px 24px rgba(21,20,15,.18); opacity:0; transform:translateY(16px) scale(.92); pointer-events:none; transition:opacity .35s var(--ease), transform .35s var(--ease);}
+  .wa-float{position:fixed; right:24px; bottom:24px; z-index:65; width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#25D366; box-shadow:0 8px 24px rgba(21,20,15,.22); opacity:0; transform:translateY(16px) scale(.92); pointer-events:none; transition:opacity .35s var(--ease), transform .35s var(--ease);}
   .wa-float.visible{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
   .wa-float:hover{transform:translateY(-3px) scale(1.05);}
   .wa-float svg{width:34px; height:34px;}
@@ -253,7 +253,7 @@
 </header>
 
 <a class="wa-float" id="waFloat" href="https://wa.me/5491166236789?text=Hola!%20Vi%20tu%20portfolio%20y%20quiero%20contarte%20mi%20proyecto" target="_blank" aria-label="Escribime por WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.85-1.27A9.5 9.5 0 1 0 12 2.5Z" fill="#25D366"/><path d="M8.9 8.9c.2-.5.4-.5.6-.5h.5c.16 0 .37 0 .53.42.2.53.68 1.68.74 1.8.06.16.1.32 0 .53-.1.2-.16.32-.32.48-.16.16-.32.37-.48.48-.16.16-.32.32-.16.63.16.32.74 1.22 1.58 1.96 1.06.95 1.96 1.27 2.27 1.43.32.16.48.1.63-.05.16-.16.68-.8.9-1.06.2-.27.42-.22.68-.11.27.11 1.69.8 1.96.95.27.16.48.21.53.37.05.21.05.79-.21 1.58-.32.63-1.22 1.16-1.7 1.22-.52.05-1.05.26-3.52-.74-3-1.16-4.9-4.16-5.06-4.37-.16-.21-1.22-1.63-1.22-3.11 0-1.48.79-2.21 1.06-2.53Z" fill="#fff"/></svg>
+  <svg viewBox="0 0 24 24"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
 </a>
 
 <section class="hero">
@@ -269,7 +269,7 @@
     </div>
     <div class="hero-frame reveal">
       <div class="reg tl"></div><div class="reg br"></div>
-      <div class="ph" id="heroParallax"><span>Fotografía principal — pieza insignia, gran formato, fondo neutro</span></div>
+      <img id="heroParallax" src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-9.jpg" alt="Lumens & Brawn — pieza insignia">
     </div>
   </div>
 </section>
@@ -385,7 +385,7 @@
         </a>
       </div>
 
-      <!-- C — Cajas Hoplita + M — Almacén deportivo + M — Tablero Migia -->
+      <!-- C — Cajas Hoplita + M — Almacén deportivo + M — Tablero Mijia -->
       <div class="port-row-group rh-triple">
         <a class="port-card fw-3 reveal" data-id="cajas-hoplita" data-tools="Solidworks|Keyshot|Conformado de chapa|Corte y plegado de acrílico" href="proyecto.html?id=cajas-hoplita" target="_blank">
           <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/Hoplita-general.jpg" alt="Cajas Hoplita — cajas para cartas coleccionables" loading="lazy">
@@ -396,8 +396,8 @@
           <div class="port-caption"><span class="cap-title">Almacén deportivo </span><span class="cap-tag">| Estaciones de entrenamiento</span></div>
         </a>
         <a class="port-card fw-4 reveal" data-id="tablero-migia" data-tools="Adobe Illustrator|Adobe Photoshop|Adobe XD|Blender|UX/UI" href="proyecto.html?id=tablero-migia" target="_blank">
-          <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/tableromijia-general.png" alt="Migia — interfaz de lavarropas" loading="lazy">
-          <div class="port-caption"><span class="cap-title">Tablero Migia </span><span class="cap-tag">| Interfaz de lavarropas</span></div>
+          <img src="https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/tableromijia-general.png" alt="Mijia — interfaz de lavarropas" loading="lazy">
+          <div class="port-caption"><span class="cap-title">Tablero Mijia </span><span class="cap-tag">| Interfaz de lavarropas</span></div>
         </a>
       </div>
     </div>
