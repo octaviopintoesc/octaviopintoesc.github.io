@@ -121,15 +121,18 @@
   .gal-item:hover img, .gal-item:hover video{transform:scale(1.03);}
 
   /* ancho completo: cada foto ocupa todo el ancho de la pantalla, sin las tarjetas ni los márgenes del sitio */
-  .gal-item.wide{column-span:all;}
-  .gal-item.centered{column-span:all; max-width:640px; margin-left:auto; margin-right:auto;}
+  .gal-item.wide{column-span:all; margin-top:20px;}
+  .gal-item.centered{column-span:all; max-width:640px; margin-left:auto; margin-right:auto; margin-top:20px;}
+  .gal-row4{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .gal-row4 .gal-item{margin-bottom:0; aspect-ratio:1/1;}
+  @media (max-width:760px){ .gal-row4{grid-template-columns:repeat(2,1fr);} }
 
   .gal-grid.gal-full{max-width:none; padding:0; column-count:1; display:flex; flex-direction:column; gap:10px;}
   .gal-full .gal-item{margin-bottom:0; border-radius:0; border:none; box-shadow:none; break-inside:auto;}
   .gal-full .gal-item:hover img, .gal-full .gal-item:hover video{transform:none;}
 
   /* botón de audio sobre el video */
-  .gal-video-wrap{position:relative;}
+  .gal-video-wrap{position:relative; margin-bottom:20px;}
   .vid-audio-btn{position:absolute; bottom:18px; right:18px; width:44px; height:44px; border-radius:50%; background:rgba(21,20,15,.55); backdrop-filter:blur(6px); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .25s; z-index:2;}
   .vid-audio-btn:hover{background:rgba(21,20,15,.78);}
   .vid-audio-btn svg{width:19px; height:19px;}
@@ -250,7 +253,7 @@
     "lumens-brawn": {
       title: "Lumens & Brawn",
       tag: "Sistemas de orden",
-      desc: "Marca de sistemas de organización para el trabajo de diseño y producción propia. El objetivo era ofrecer un producto armable y personalizable pero a la vez stockeable. Todas las piezas interactúan entre sí y se pueden usar para producir distintos productos del catálogo.",
+      desc: "Marca de sistemas de organización para el trabajo de diseño y producción propia.",
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/Lumensandbrawn-general.png",
       specs: {
         year: "2025 - presente",
@@ -262,7 +265,7 @@
       // orden respetado tal cual fue provisto, incluyendo los videos intercalados
       gallery: [
         { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-1.mp4" },
-        "https://github.com/octaviopintoesc/octaviopintoesc.github.io/blob/main/imagenes/lumensandbrawn-10.jpg?raw=true", 
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-10.jpg",
         { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-2.jpg", wide:true },
         "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-3.png",
         "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumenandbrawn-4.png",
@@ -273,8 +276,8 @@
         "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-9.jpg",
         { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-90.webm" },
         "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-91.jpg",
-        "https://github.com/octaviopintoesc/octaviopintoesc.github.io/blob/main/imagenes/lumensandbrawn-92.jpg?raw=true",
-        { src:"https://github.com/octaviopintoesc/octaviopintoesc.github.io/blob/main/imagenes/lumensandbrawn-93.jpg?raw=true ", wide:true }
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-92.jpg",
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lumensandbrawn-93.jpg", wide:true }
       ]
     },
     "dapquim": {
@@ -476,6 +479,100 @@
         { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/tableromijia-video.mp4", wide:true },
         { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/tablerimijia-1.jpg", wide:true }
       ]
+    },
+    "inertial": {
+      title: "Inertial",
+      tag: "Gimnasio compacto",
+      desc: "Prototipo virtual de máquina de entrenamiento multipropósito que usa un volante de inercia en lugar de peso. Objetivo: hacer un equipo versátil para el hogar.",
+      cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial.jpg",
+      specs: {
+        year: "2020",
+        tools: "Solidworks, Keyshot, Adobe Illustrator, Adobe Photoshop, Adobe Premiere, Conformado de chapa, Análisis FEA",
+        client: "Universidad de Buenos Aires",
+        role: "Diseño, prototipo virtual, simulación de producción"
+      },
+      // orden respetado tal cual fue provisto, incluyendo el video intercalado
+      gallery: [
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-00.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-01.jpg", wide:true },
+        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-02.webm", wide:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-03.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-04.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-05.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-06.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-07.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-08.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-09.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-10.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/inertial-11.jpg"
+      ]
+    },
+    "morfo": {
+      title: "Intervención hiperboloide",
+      tag: "Estudio morfológico",
+      desc: "Trabajo de diseño morfológico usando formas geométricas y superficies para generar volúmenes avanzados.",
+      cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/morfo.jpg",
+      specs: {
+        year: "2020",
+        tools: "Solidworks, Keyshot, Adobe Illustrator, Adobe Photoshop, Impresión 3D",
+        client: "Universidad de Buenos Aires",
+        role: "Diseño, prototipo"
+      },
+      // orden respetado tal cual fue provisto, incluyendo el video al inicio
+      gallery: [
+        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/morfo-00.mp4", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/morfo-01.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/morfo-02.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/morfo-03.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/morfo-04.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/morfo-05.jpg", wide:true }
+      ]
+    },
+    "trenzadora": {
+      title: "Trenzadora",
+      tag: "Máquina productora de cuerdas",
+      desc: "Diseño y fabricación de una máquina motorizada con transmisión por engranajes de un sistema trenzador.",
+      cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/trenzadora-general.jpg",
+      specs: {
+        year: "2019",
+        tools: "Solidworks, Keyshot, Adobe Illustrator, Termoformado, Herrería",
+        client: "Universidad de Buenos Aires",
+        role: "Diseño, prototipo"
+      },
+      // orden respetado tal cual fue provisto
+      gallery: [
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/trenzadora-01.jpg", wide:true },
+        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/trenzadora02.mp4", wide:true }
+      ]
+    },
+    "mueble": {
+      title: "Muebles varios",
+      tag: "Creaciones propias",
+      desc: "Diseño y fabricación de muebles para uso personal.",
+      cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble.png",
+      specs: {
+        year: "2017 - presente",
+        tools: "Solidworks, Herrería, Carpintería, Ruter CNC, Vectric Aspire, Autocad",
+        client: "Universidad de Buenos Aires",
+        role: "Diseño, prototipo"
+      },
+      // orden respetado tal cual fue provisto — mueble-04 a 07 van agrupadas en una fila de 4 (row4)
+      gallery: [
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-00.jpg", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-01.jpg", wide:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-02.png",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-03.png",
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-04.jpg", row4:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-05.jpg", row4:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-06.jpg", row4:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-07.jpg", row4:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-08.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-09.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-10.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-11.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-12.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mueble-13.jpg"
+      ]
     }
   };
 
@@ -483,7 +580,7 @@
   const ORDER = [
     "lumens-brawn","dapquim","atina-tools","miken","oregon-hotel",
     "orbital","lampara-larga","fusion-a-medida","cajas-hoplita",
-    "almacen-deportivo","tablero-migia"
+    "almacen-deportivo","tablero-migia","inertial","morfo","trenzadora","mueble"
   ];
 
   const params = new URLSearchParams(window.location.search);
@@ -543,11 +640,12 @@
       galGrid.innerHTML = '<p class="gal-empty">Todavía no hay fotos propias cargadas para este proyecto.</p>';
     }
 
-    galleryItems.forEach(item => {
+    function buildItem(item) {
       // cada item puede ser: un string (imagen normal), o un objeto:
       //   { src:"..." }                          -> imagen normal
       //   { src:"...", wide:true }                -> imagen "de lado a lado" (ocupa las dos columnas, respeta los márgenes de la página)
       //   { src:"...", centered:true }            -> imagen chica centrada, sola en su fila
+      //   { src:"...", row4:true }                -> se agrupa con las siguientes row4 (hasta 4) en una fila pareja
       //   { type:"video", src:"..." }              -> video normal
       //   { type:"video", src:"...", wide:true }   -> video "de lado a lado"
       //   { type:"video", src:"...", centered:true } -> video chico centrado, solo en su fila
@@ -588,9 +686,29 @@
         });
         fig.appendChild(btn);
       }
+      return fig;
+    }
 
-      galGrid.appendChild(fig);
-    });
+    let gi = 0;
+    while (gi < galleryItems.length) {
+      const item = galleryItems[gi];
+      const isRow4 = typeof item === 'object' && item.row4 === true;
+      if (isRow4) {
+        // agrupa este item y los siguientes marcados row4 (hasta 4) en una sola fila pareja
+        const wrap = document.createElement('div');
+        wrap.className = 'gal-item wide gal-row4 reveal';
+        let count = 0;
+        while (gi < galleryItems.length && count < 4 && typeof galleryItems[gi] === 'object' && galleryItems[gi].row4 === true) {
+          wrap.appendChild(buildItem(galleryItems[gi]));
+          gi++;
+          count++;
+        }
+        galGrid.appendChild(wrap);
+      } else {
+        galGrid.appendChild(buildItem(item));
+        gi++;
+      }
+    }
 
     const idx = ORDER.indexOf(id);
     const prevId = ORDER[(idx - 1 + ORDER.length) % ORDER.length];
