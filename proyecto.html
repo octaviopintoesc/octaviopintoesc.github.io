@@ -113,26 +113,42 @@
   .spec-links a{color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:1px; width:fit-content; transition:border-color .2s, color .2s;}
   .spec-links a:hover{border-color:var(--ink); color:var(--accent);}
 
-  /* ---------- galería: masonry por columnas (default) o ancho completo (full-bleed) ---------- */
+  /* ---------- galería: dos columnas explícitas (flex + gap) o ancho completo (full-bleed) ----------
+     Nota técnica: antes usábamos CSS column-count (masonry automático), pero el navegador
+     recorta el margen cada vez que decide cortar una columna — y los videos, al ser más altos
+     que el promedio, caían justo en ese punto de corte con más frecuencia que las fotos.
+     Con flex + gap el espaciado es un hueco real entre elementos, no un margen, así que no
+     se recorta nunca, sin importar qué tan alto sea cada elemento. */
   .proj-gallery{padding:54px 0 130px;}
-  .gal-grid{max-width:1240px; margin:0 auto; padding:0 40px; column-count:2; column-gap:20px;}
-  .gal-item{display:block; break-inside:avoid; margin-bottom:20px; border-radius:var(--radius); overflow:hidden; background:var(--paper-alt); border:1px solid rgba(21,20,15,.07); box-shadow:0 1px 2px rgba(21,20,15,.04); position:relative;}
+  .gal-grid{max-width:1240px; margin:0 auto; padding:0 40px; display:flex; flex-direction:column; gap:20px;}
+  .gal-2col-row{display:flex; gap:20px; align-items:flex-start;}
+  .gal-2col-row .gal-col{flex:1 1 0; min-width:0; display:flex; flex-direction:column; gap:20px;}
+  .gal-item{display:block; border-radius:var(--radius); overflow:hidden; background:var(--paper-alt); border:1px solid rgba(21,20,15,.07); box-shadow:0 1px 2px rgba(21,20,15,.04); position:relative;}
   .gal-item img, .gal-item video{width:100%; height:auto; display:block; transition:transform .8s var(--ease);}
   .gal-item:hover img, .gal-item:hover video{transform:scale(1.03);}
 
-  /* ancho completo: cada foto ocupa todo el ancho de la pantalla, sin las tarjetas ni los márgenes del sitio */
-  .gal-item.wide{column-span:all; margin-top:20px;}
-  .gal-item.centered{column-span:all; max-width:640px; margin-left:auto; margin-right:auto; margin-top:20px;}
-  .gal-row4{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
-  .gal-row4 .gal-item{margin-bottom:0; aspect-ratio:1/1;}
-  @media (max-width:760px){ .gal-row4{grid-template-columns:repeat(2,1fr);} }
+  /* ancho completo dentro de los márgenes de la página */
+  .gal-item.wide{width:100%;}
+  /* chico y centrado, solo en su fila */
+  .gal-item.centered{max-width:640px; margin:0 auto;}
 
-  .gal-grid.gal-full{max-width:none; padding:0; column-count:1; display:flex; flex-direction:column; gap:10px;}
-  .gal-full .gal-item{margin-bottom:0; border-radius:0; border:none; box-shadow:none; break-inside:auto;}
+  /* fila pareja de 2, 3 o 4 elementos */
+  .gal-rowgroup{display:grid; gap:20px;}
+  .gal-rowgroup[data-count="2"]{grid-template-columns:repeat(2,1fr);}
+  .gal-rowgroup[data-count="3"]{grid-template-columns:repeat(3,1fr);}
+  .gal-rowgroup[data-count="4"]{grid-template-columns:repeat(4,1fr);}
+  .gal-rowgroup[data-count="2"] .gal-item{aspect-ratio:4/3;}
+  .gal-rowgroup[data-count="3"] .gal-item{aspect-ratio:4/5;}
+  .gal-rowgroup[data-count="4"] .gal-item{aspect-ratio:1/1;}
+  @media (max-width:760px){ .gal-2col-row{flex-direction:column;} .gal-rowgroup{grid-template-columns:repeat(2,1fr) !important;} }
+
+  /* ancho completo real: cada foto ocupa todo el ancho de la pantalla, sin tarjeta ni márgenes del sitio */
+  .gal-grid.gal-full{max-width:none; padding:0; gap:10px;}
+  .gal-full .gal-item{border-radius:0; border:none; box-shadow:none;}
   .gal-full .gal-item:hover img, .gal-full .gal-item:hover video{transform:none;}
 
   /* botón de audio sobre el video */
-  .gal-video-wrap{position:relative; margin-bottom:20px;}
+  .gal-video-wrap{position:relative;}
   .vid-audio-btn{position:absolute; bottom:18px; right:18px; width:44px; height:44px; border-radius:50%; background:rgba(21,20,15,.55); backdrop-filter:blur(6px); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .25s; z-index:2;}
   .vid-audio-btn:hover{background:rgba(21,20,15,.78);}
   .vid-audio-btn svg{width:19px; height:19px;}
@@ -169,7 +185,6 @@
     .nav-links{display:none;}
     .burger{display:flex;}
     .proj-head{padding-top:120px;}
-    .gal-grid{column-count:1;}
   }
 </style>
 </head>
@@ -308,7 +323,7 @@
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/mandril-general.JPG",
       specs: {
         year: "2025",
-        tools: "Solidworks, impresión 3D, conformado de chapa",
+        tools: "Solidworks, Impresión 3D, Conformado de chapa",
         client: "Atina Tools",
         role: "Diseño, prototipado, fabricación de primera serie"
       },
@@ -346,7 +361,7 @@
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/oregonhotel-general.jpg",
       specs: {
         year: "2026",
-        tools: "Solidworks, carpintería, herrería, proveedores de cartelería",
+        tools: "Solidworks, Carpintería, Herrería, Proveedores de cartelería",
         client: "Levitex, Studio Invernadero",
         role: "Diseño, fabricación"
       },
@@ -380,7 +395,7 @@
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/lamparaa-cercamiento-princiapal.jpg",
       specs: {
         year: "2025",
-        tools: "Solidworks, Vectric Aspire, Ruter CNC, carpintería",
+        tools: "Solidworks, Vectric Aspire, Ruter CNC, Carpintería",
         client: "Particular",
         role: "Diseño, fabricación"
       },
@@ -398,22 +413,28 @@
       cover: "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-general.jpg",
       specs: {
         year: "2022-2025",
-        tools: "Solidworks, Vectric Aspire, Ruter CNC, carpintería, iluminación, herrería",
+        tools: "Solidworks, Vectric Aspire, Ruter CNC, Carpintería, Iluminación, Herrería",
         client: "Fusión a medida (como jefe de diseño industrial)",
         role: "Diseño, fabricación, diseño de planta industrial",
         links: ["https://www.instagram.com/fusion.a.medida/", "https://fusionamedida.com/"]
       },
+      // orden respetado tal cual fue provisto, con las agrupaciones de fila indicadas
       gallery: [
-        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-7.mov" },
-        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-8.mov" },
-        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-1.png", wide:true },
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-2.png",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-3.png",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-4.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-5.jpg",
-        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-6.png", wide:true },
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-9.jpg",
-        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-99.jpg"
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-01.png", wide:true },
+        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-02.mov", row2:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-03.jpeg",
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-04.png", row2:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-05.jpg",
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-06.jpg", row2:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-07.jpg",
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-08.png", row3:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-09.jpg",
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-099.jpg",
+        { type:"video", src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-10.mov", row2:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-11.jpg",
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-12.png", wide:true },
+        { src:"https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-13.jpg", row2:true },
+        "https://raw.githubusercontent.com/octaviopintoesc/octaviopintoesc.github.io/main/imagenes/fusion-14.jpg"
       ]
     },
     "cajas-hoplita": {
@@ -643,9 +664,11 @@
     function buildItem(item) {
       // cada item puede ser: un string (imagen normal), o un objeto:
       //   { src:"..." }                          -> imagen normal
-      //   { src:"...", wide:true }                -> imagen "de lado a lado" (ocupa las dos columnas, respeta los márgenes de la página)
+      //   { src:"...", wide:true }                -> imagen "de lado a lado" (ocupa el ancho completo, respeta los márgenes de la página)
       //   { src:"...", centered:true }            -> imagen chica centrada, sola en su fila
-      //   { src:"...", row4:true }                -> se agrupa con las siguientes row4 (hasta 4) en una fila pareja
+      //   { src:"...", row2:true }                -> arranca (o continúa) una fila pareja de 2
+      //   { src:"...", row3:true }                -> arranca (o continúa) una fila pareja de 3
+      //   { src:"...", row4:true }                -> arranca (o continúa) una fila pareja de 4
       //   { type:"video", src:"..." }              -> video normal
       //   { type:"video", src:"...", wide:true }   -> video "de lado a lado"
       //   { type:"video", src:"...", centered:true } -> video chico centrado, solo en su fila
@@ -689,26 +712,62 @@
       return fig;
     }
 
+    const isFullBleed = project.layout === 'full';
+    let normalBuffer = [];
+
+    function flushNormalBuffer() {
+      if (!normalBuffer.length) return;
+      if (normalBuffer.length === 1) {
+        galGrid.appendChild(buildItem(normalBuffer[0]));
+      } else {
+        const row = document.createElement('div');
+        row.className = 'gal-2col-row';
+        const col1 = document.createElement('div'); col1.className = 'gal-col';
+        const col2 = document.createElement('div'); col2.className = 'gal-col';
+        normalBuffer.forEach((it, idx) => {
+          (idx % 2 === 0 ? col1 : col2).appendChild(buildItem(it));
+        });
+        row.appendChild(col1);
+        if (col2.children.length) row.appendChild(col2);
+        galGrid.appendChild(row);
+      }
+      normalBuffer = [];
+    }
+
     let gi = 0;
     while (gi < galleryItems.length) {
       const item = galleryItems[gi];
-      const isRow4 = typeof item === 'object' && item.row4 === true;
-      if (isRow4) {
-        // agrupa este item y los siguientes marcados row4 (hasta 4) en una sola fila pareja
+      const isObjItem = typeof item === 'object';
+      const rowSize = isObjItem && item.row2 ? 2 : (isObjItem && item.row3 ? 3 : (isObjItem && item.row4 ? 4 : 0));
+      const isWide = isObjItem && item.wide === true;
+      const isCentered = isObjItem && item.centered === true;
+
+      if (isFullBleed) {
+        galGrid.appendChild(buildItem(item));
+        gi++;
+        continue;
+      }
+
+      if (rowSize > 1) {
+        flushNormalBuffer();
         const wrap = document.createElement('div');
-        wrap.className = 'gal-item wide gal-row4 reveal';
-        let count = 0;
-        while (gi < galleryItems.length && count < 4 && typeof galleryItems[gi] === 'object' && galleryItems[gi].row4 === true) {
+        wrap.className = 'gal-rowgroup';
+        wrap.dataset.count = rowSize;
+        for (let k = 0; k < rowSize && gi < galleryItems.length; k++) {
           wrap.appendChild(buildItem(galleryItems[gi]));
           gi++;
-          count++;
         }
         galGrid.appendChild(wrap);
-      } else {
+      } else if (isWide || isCentered) {
+        flushNormalBuffer();
         galGrid.appendChild(buildItem(item));
+        gi++;
+      } else {
+        normalBuffer.push(item);
         gi++;
       }
     }
+    flushNormalBuffer();
 
     const idx = ORDER.indexOf(id);
     const prevId = ORDER[(idx - 1 + ORDER.length) % ORDER.length];
