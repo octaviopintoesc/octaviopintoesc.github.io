@@ -133,14 +133,15 @@
   .gal-item.centered{max-width:640px; margin:0 auto;}
 
   /* fila pareja de 2, 3 o 4 elementos */
-  .gal-rowgroup{display:grid; gap:20px;}
+  .gal-rowgroup{display:grid; gap:20px; align-items:stretch;}
   .gal-rowgroup[data-count="2"]{grid-template-columns:repeat(2,1fr);}
   .gal-rowgroup[data-count="3"]{grid-template-columns:repeat(3,1fr);}
   .gal-rowgroup[data-count="4"]{grid-template-columns:repeat(4,1fr);}
-  .gal-rowgroup[data-count="2"] .gal-item{aspect-ratio:4/3;}
-  .gal-rowgroup[data-count="3"] .gal-item{aspect-ratio:4/5;}
-  .gal-rowgroup[data-count="4"] .gal-item{aspect-ratio:1/1;}
-  @media (max-width:760px){ .gal-2col-row{flex-direction:column;} .gal-rowgroup{grid-template-columns:repeat(2,1fr) !important;} }
+  /* la altura de la fila se calcula en JS a partir de la imagen/video menos alto de esa fila,
+     así ninguna imagen se recorta más de lo necesario para emparejar con sus vecinas */
+  .gal-rowgroup .gal-item{height:100%;}
+  .gal-rowgroup .gal-item img, .gal-rowgroup .gal-item video{height:100%; width:100%; object-fit:cover;}
+  @media (max-width:760px){ .gal-2col-row{flex-direction:column;} .gal-rowgroup{grid-template-columns:repeat(2,1fr) !important; height:auto !important;} .gal-rowgroup .gal-item{aspect-ratio:4/3;} .gal-rowgroup .gal-item img, .gal-rowgroup .gal-item video{height:100%;} }
 
   /* ancho completo real: cada foto ocupa todo el ancho de la pantalla, sin tarjeta ni márgenes del sitio */
   .gal-grid.gal-full{max-width:none; padding:0; gap:10px;}
@@ -713,6 +714,45 @@
     }
 
     const isFullBleed = project.layout === 'full';
+
+    // ajusta el alto de una fila agrupada (row2/row3/row4) a partir del elemento MENOS alto
+    // de esa fila, para que ninguna imagen se recorte más de lo necesario
+    function fitRowGroupHeight(wrap) {
+      const medias = Array.from(wrap.querySelectorAll('img, video'));
+      if (!medias.length) return;
+
+      function compute() {
+        const firstCell = wrap.firstElementChild;
+        const colWidth = firstCell ? firstCell.getBoundingClientRect().width : 0;
+        if (!colWidth) return;
+        let minHeight = Infinity;
+        medias.forEach(m => {
+          const nw = m.tagName === 'VIDEO' ? m.videoWidth : m.naturalWidth;
+          const nh = m.tagName === 'VIDEO' ? m.videoHeight : m.naturalHeight;
+          if (nw && nh) {
+            const h = colWidth * (nh / nw);
+            if (h < minHeight) minHeight = h;
+          }
+        });
+        if (minHeight !== Infinity) {
+          wrap.style.height = Math.round(minHeight) + 'px';
+        }
+      }
+
+      let pending = 0;
+      medias.forEach(m => {
+        const ready = m.tagName === 'VIDEO' ? m.readyState >= 1 : (m.complete && m.naturalWidth > 0);
+        if (!ready) {
+          pending++;
+          const evt = m.tagName === 'VIDEO' ? 'loadedmetadata' : 'load';
+          m.addEventListener(evt, () => { pending--; if (pending === 0) compute(); }, { once: true });
+        }
+      });
+      // si todo ya estaba cargado (cache), calculamos ya; si no, esperamos al último "load"
+      requestAnimationFrame(compute);
+      if (pending === 0) compute();
+    }
+
     let normalBuffer = [];
 
     function flushNormalBuffer() {
@@ -758,6 +798,7 @@
           gi++;
         }
         galGrid.appendChild(wrap);
+        fitRowGroupHeight(wrap);
       } else if (isWide || isCentered) {
         flushNormalBuffer();
         galGrid.appendChild(buildItem(item));
